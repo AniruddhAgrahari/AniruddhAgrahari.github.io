@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <h1 class="logo">My Portfolio</h1>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="background-image: url('assets/images/projects/4.jpg');">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hello, I'm <span class="highlight">Aniruddh Agrahari</span></h1>
+                <p class="lead">3rd year Undergrad</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/AniruddhAgrahari" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/aniruddh-agrahari-240160269/" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/aniruddh0408" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-padding">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="assets/images/projects/ani.jpg" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <h3>Who am I? <span class="highlight-dot">●</span></h3>
+                    <p>I am Aniruddh, a passionate software developer and AI/ML enthusiast with a strong foundation in
+                        data structures and algorithms. I am committed to leveraging technology and data-driven
+                        solutions to drive efficiency, innovation, and business growth.</p>
+                    <p>My focus is on producing clean, maintainable code that delivers exceptional user experiences.</p>
+                    <a href="https://drive.google.com/file/d/1gklZjsYu1Dk3EF0Ef-__UC48LghFNkkM/view?usp=drivesdk"
+                        class="btn btn-primary">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section-padding">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fab fa-html5"></i></span>
+                    <h3>HTML5</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fab fa-css3-alt"></i></span>
+                    <h3>CSS3</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fab fa-js"></i></span>
+                    <h3>JavaScript</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fas fa-code"></i></span>
+                    <h3>C++</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fas fa-copyright"></i></span>
+                    <h3>C</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fab fa-python"></i></span>
+                    <h3>Python</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fas fa-brain"></i></span>
+                    <h3>Machine Learning</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="skill-box">
+                    <span class="skill-icon"><i class="fas fa-robot"></i></span>
+                    <h3>Artificial Intelligence</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section-padding">
+        <div class="container">
+            <h2 class="section-title">My Projects <span class="yellow-tag">Portfolio</span></h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="assets/images/projects/Gemini_Generated_Image_pnxxt2pnxxt2pnxx.jpeg"
+                            alt="Music Plagiarism Detector">
+                    </div>
+                    <div class="project-info">
+                        <h3>Music Plagiarism</h3>
+                        <p>Review Paper</p>
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/1IQRGoD4eKdsBAMCVJ5PvTqU1o0g1QhB2/view?usp=sharing"
+                                target="_blank" class="btn btn-small">View Project</a>
+                            <a href="#" target="_blank" class="btn btn-small btn-secondary">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="assets/images/projects/Gemini_Generated_Image_ir9sx2ir9sx2ir9s.jpeg"
+                            alt="Handwritten Digit Recognition">
+                    </div>
+                    <div class="project-info">
+                        <h3>Handwritten Digit Recognition</h3>
+                        <p>Review Paper</p>
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/19ZfL0p8vTIqA9VB92C2WnqKVWgjww06z/view?usp=sharing"
+                                target="_blank" class="btn btn-small">View Project</a>
+                            <a href="#" target="_blank" class="btn btn-small btn-secondary">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="assets/images/projects/Gemini_Generated_Image_2iej602iej602iej.jpeg"
+                            alt="AI Based Image Super Resolution">
+                    </div>
+                    <div class="project-info">
+                        <h3>AI based ISR using CNN</h3>
+                        <p>Research Paper</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="btn btn-small">View Project</a>
+                            <a href="#" target="_blank" class="btn btn-small btn-secondary">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section-padding">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>agraharianiruddha@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+91 6307246918</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Mohali, Punjab</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div id="form-status" class="form-status" style="display: none;"></div>
+                    <form id="contactForm" action="https://formspree.io/f/mblgrgov" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <!-- Honeypot field to prevent spam -->
+                        <div class="form-group" style="display: none;">
+                            <label for="honeypot">Leave this field empty</label>
+                            <input type="text" name="_honey" id="honeypot">
+                        </div>
+                        <!-- Use a more specific subject line -->
+                        <input type="hidden" name="_subject" value="New message from portfolio website">
+                        <!-- Remove the redirect - let Formspree handle it -->
+                        <input type="hidden" name="_next" value="">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 My Portfolio. All Rights Reserved.</p>
+                <div class="social-icons">
+                    <a href="https://github.com/AniruddhAgrahari" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/aniruddh-agrahari-240160269/" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/aniruddh0408" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="assets/js/imageHandler.js"></script>
+    <script src="assets/js/backgroundLoader.js"></script>
+    <script src="assets/js/3dEffects.js"></script>
+    <script src="assets/js/particleBackground.js"></script>
+</body>
+
+</html>
