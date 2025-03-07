@@ -11,21 +11,32 @@
 
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" data-theme-component="navbar">
         <div class="container">
             <h1 class="logo">My Portfolio</h1>
-            <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="nav-menu" id="main-nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="theme-toggle-wrapper">
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode" class="theme-toggle-btn">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" id="mobile-menu-toggle">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+            <!-- Mobile Theme Toggle -->
+            <button id="mobile-theme-toggle" aria-label="Toggle Dark Mode" class="theme-toggle-btn">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
         </div>
     </nav>
 
@@ -260,6 +271,8 @@
     <script src="assets/js/backgroundLoader.js"></script>
     <script src="assets/js/3dEffects.js"></script>
     <script src="assets/js/particleBackground.js"></script>
+    <script src="assets/js/scrollEnhancer.js"></script>
+    <script src="assets/js/themeToggler.js"></script>
 </body>
 
 </html>
