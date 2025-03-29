@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Track scrolling to ensure navbar theme persists
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         if (navbar.getAttribute('data-theme') !== currentTheme) {
             navbar.setAttribute('data-theme', currentTheme);
