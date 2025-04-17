@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+/* Smooth theme transitions */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Theme Variables */
 :root {
   --primary-color: #f9ca24; /* Golden yellow */
@@ -457,9 +462,11 @@ img {
 }
 
 .progress {
+  width: 0; /* start at zero for animation */
   height: 100%;
   background-color: var(--primary-color);
   border-radius: 5px;
+  transition: width 1s ease; /* animate width */
 }
 
 /* Projects Section */
@@ -1092,4 +1099,242 @@ footer .social-icons a:hover {
     font-size: 0.8rem;
     margin: 0 5px;
   } /* Even smaller social icons */
+}
+
+/* Scroll Progress Bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background-color: var(--primary-color);
+  width: 0;
+  z-index: 2000;
+  transition: width 0.25s ease-out;
+}
+
+/* Typewriter Effect Styles */
+.roles {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+.cursor {
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Scroll-down indicator */
+.scroll-down-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--light-color);
+  animation: bounce 2s infinite;
+  z-index: 3;
+  cursor: pointer;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+  40% { transform: translate(-50%, -10px); }
+  60% { transform: translate(-50%, -5px); }
+}
+.scroll-down-indicator.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+/* Projects Filter Buttons */
+.projects-filter {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.projects-filter .filter-btn {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.projects-filter .filter-btn.active,
+.projects-filter .filter-btn:hover {
+  background: var(--primary-color);
+  color: var(--dark-color);
+}
+
+/* Hover Overlay for Project Cards */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+.project-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+.project-card:hover .overlay {
+  opacity: 1;
+}
+.overlay-content {
+  text-align: center;
+  color: var(--light-color);
+}
+.overlay-content p {
+  margin-bottom: 10px;
+}
+.overlay-content a {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 12px;
+  background: var(--primary-color);
+  color: var(--dark-color);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+.overlay-content a:hover {
+  background: var(--dark-color);
+  color: var(--light-color);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.lightbox-modal.hidden {
+  display: none;
+}
+.lightbox-content {
+  max-width: 90%;
+  max-height: 80%;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0 10px;
+  user-select: none;
+  transform: translateY(-50%);
+}
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+.lightbox-caption {
+  position: absolute;
+  bottom: 30px;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Button Micro-interactions */
+.btn {
+  position: relative; /* for ripple */
+  overflow: hidden;
+}
+.btn i {
+  transition: transform 0.3s ease;
+}
+.btn:hover i {
+  transform: rotate(360deg) scale(1.2);
+}
+
+/* Ripple Effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Form Input Focus & Validation */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+  outline: none;
+}
+.contact-form input:invalid {
+  border-color: #e74c3c;
+}
+
+/* Toast/Snackbar Notifications */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3000;
+}
+.toast {
+  min-width: 250px;
+  max-width: 300px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: var(--light-color);
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.toast.success {
+  background: #2ecc71;
+}
+.toast.error {
+  background: #e74c3c;
 }

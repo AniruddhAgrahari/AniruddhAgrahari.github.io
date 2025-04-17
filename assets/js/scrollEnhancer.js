@@ -36,4 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
+    // Animate skill meters when they enter the viewport
+    const skillBars = document.querySelectorAll('.skills-container .progress');
+    const skillObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                bar.style.width = bar.getAttribute('data-progress');
+                observer.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.3 });
+    skillBars.forEach(bar => skillObserver.observe(bar));
 });

@@ -70,7 +70,9 @@ document.querySelectorAll('.nav-menu a, .cta-buttons a[href^="#"]').forEach(anch
 });
 
 // Scroll reveal animation for sections
-const revealElements = document.querySelectorAll('.section-title, .about-content, .skill-box, .project-card, .contact-wrapper');
+const revealElements = document.querySelectorAll(
+  '.hero-content, .section-padding, .section-title, .about-content, .skill-box, .project-card, .contact-wrapper'
+);
 const revealOptions = {
     threshold: 0.2,
     rootMargin: "0px 0px -100px 0px"
@@ -192,11 +194,103 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(() => {
                         formStatus.style.display = 'none';
                     }, 5000);
+                    showToast('Thank you! Your message has been sent successfully.', 'success');
                 })
                 .catch(error => {
                     formStatus.innerHTML = '<p class="error">Oops! There was a problem sending your message. Please try again.</p>';
+                    showToast('Oops! There was a problem sending your message.', 'error');
                     console.error('Error:', error);
                 });
         });
     }
+
+    // Typewriter
+    const roles = ["Designer", "Developer", "Problem‑Solver"];
+    const typedEl = document.getElementById('typed-roles');
+    let roleIdx = 0, charIdx = 0, isDeleting = false;
+    function typeRole() {
+        const role = roles[roleIdx];
+        if (!isDeleting) {
+            typedEl.textContent = role.substring(0, charIdx++);
+        } else {
+            typedEl.textContent = role.substring(0, charIdx--);
+        }
+        let delay = isDeleting ? 50 : 150;
+        if (charIdx === role.length + 1) {
+            isDeleting = true;
+            delay = 1000;
+            charIdx = role.length;
+        } else if (isDeleting && charIdx === 0) {
+            isDeleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+            delay = 500;
+        }
+        setTimeout(typeRole, delay);
+    }
+    if (typedEl) typeRole();
+
+    // Scroll progress bar
+    const progressBar = document.getElementById('progress-bar');
+    const indicator = document.querySelector('.scroll-down-indicator');
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = (scrollY / docH) * 100;
+        progressBar.style.width = pct + '%';
+        // Hide indicator after scrolling
+        if (scrollY > 50) {
+            indicator && indicator.classList.add('hidden');
+        } else {
+            indicator && indicator.classList.remove('hidden');
+        }
+    });
+
+    // Scroll-down indicator click
+    const down = document.querySelector('.scroll-down-indicator');
+    down && down.addEventListener('click', () => {
+        const target = document.getElementById('about');
+        const navH = document.getElementById('navbar').offsetHeight;
+        const top = target.offsetTop - navH;
+        window.scrollTo({ top, behavior: 'smooth' });
+    });
+});
+
+// Micro-interactions: ripple effect and toast functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // Ripple effect on buttons
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      this.appendChild(ripple);
+      const size = Math.max(this.clientWidth, this.clientHeight);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      const rect = this.getBoundingClientRect();
+      ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  });
+
+  // Prepare toast container
+  if (!document.getElementById('toast-container')) {
+    const tc = document.createElement('div');
+    tc.id = 'toast-container';
+    document.body.appendChild(tc);
+  }
+
+  // Global showToast function
+  window.showToast = (message, type = 'success') => {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.getElementById('toast-container').appendChild(toast);
+    // animate in
+    setTimeout(() => toast.classList.add('visible'), 50);
+    // auto-remove
+    setTimeout(() => {
+      toast.classList.remove('visible');
+      toast.addEventListener('transitionend', () => toast.remove());
+    }, 4000);
+  };
 });

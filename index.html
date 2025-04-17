@@ -12,6 +12,8 @@
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="progress-bar"></div>
     <!-- Navigation -->
     <nav id="navbar" data-theme-component="navbar">
         <div class="container">
@@ -41,13 +43,14 @@
             </button>
         </div>
     </nav>
-
+    <main id="main-content">
     <!-- Hero Section -->
     <section id="home" class="hero" style="background-image: url('assets/images/projects/4.jpg');">
         <div class="container">
             <div class="hero-content">
                 <h1>Hello, I'm <span class="highlight">Aniruddh Agrahari</span></h1>
                 <p class="lead">3rd year Undergrad</p>
+                <p class="roles"><span id="typed-roles"></span><span class="cursor">|</span></p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
@@ -60,6 +63,7 @@
                 </div>
             </div>
         </div>
+        <div class="scroll-down-indicator"><i class="fas fa-chevron-down"></i></div>
     </section>
 
     <!-- About Section -->
@@ -92,56 +96,56 @@
                     <span class="skill-icon"><i class="fab fa-html5"></i></span>
                     <h3>HTML5</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 90%"></div>
+                        <div class="progress" data-progress="90%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fab fa-css3-alt"></i></span>
                     <h3>CSS3</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 65%"></div>
+                        <div class="progress" data-progress="65%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fab fa-js"></i></span>
                     <h3>JavaScript</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 50%"></div>
+                        <div class="progress" data-progress="50%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fas fa-code"></i></span>
                     <h3>C++</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 80%"></div>
+                        <div class="progress" data-progress="80%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fas fa-copyright"></i></span>
                     <h3>C</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 75%"></div>
+                        <div class="progress" data-progress="75%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fab fa-python"></i></span>
                     <h3>Python</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 85%"></div>
+                        <div class="progress" data-progress="85%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fas fa-brain"></i></span>
                     <h3>Machine Learning</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 60%"></div>
+                        <div class="progress" data-progress="60%"></div>
                     </div>
                 </div>
                 <div class="skill-box">
                     <span class="skill-icon"><i class="fas fa-robot"></i></span>
                     <h3>Artificial Intelligence</h3>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 50%"></div>
+                        <div class="progress" data-progress="50%"></div>
                     </div>
                 </div>
             </div>
@@ -152,56 +156,75 @@
     <section id="projects" class="projects section-padding">
         <div class="container">
             <h2 class="section-title">My Projects <span class="yellow-tag">Portfolio</span></h2>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+            </div>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
                         <img src="assets/images/projects/Gemini_Generated_Image_pnxxt2pnxxt2pnxx.jpeg"
                             alt="Music Plagiarism Detector">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <p>Music Plagiarism review paper project.</p>
+                                <a href="https://drive.google.com/file/d/1IQRGoD4eKdsBAMCVJ5PvTqU1o0g1QhB2/view?usp=sharing" target="_blank">View Live</a>
+                                <a href="#" class="view-code">View Code</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Music Plagiarism</h3>
                         <p>Review Paper</p>
-                        <div class="project-links">
-                            <a href="https://drive.google.com/file/d/1IQRGoD4eKdsBAMCVJ5PvTqU1o0g1QhB2/view?usp=sharing"
-                                target="_blank" class="btn btn-small">View Project</a>
-                            <a href="#" target="_blank" class="btn btn-small btn-secondary">View Code</a>
-                        </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">
                         <img src="assets/images/projects/Gemini_Generated_Image_ir9sx2ir9sx2ir9s.jpeg"
                             alt="Handwritten Digit Recognition">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <p>Handwritten digit recognition paper.</p>
+                                <a href="https://drive.google.com/file/d/19ZfL0p8vTIqA9VB92C2WnqKVWgjww06z/view?usp=sharing" target="_blank">View Live</a>
+                                <a href="#" class="view-code">View Code</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Handwritten Digit Recognition</h3>
                         <p>Review Paper</p>
-                        <div class="project-links">
-                            <a href="https://drive.google.com/file/d/19ZfL0p8vTIqA9VB92C2WnqKVWgjww06z/view?usp=sharing"
-                                target="_blank" class="btn btn-small">View Project</a>
-                            <a href="#" target="_blank" class="btn btn-small btn-secondary">View Code</a>
-                        </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-img">
                         <img src="assets/images/projects/Gemini_Generated_Image_2iej602iej602iej.jpeg"
                             alt="AI Based Image Super Resolution">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <p>AI based image super resolution using CNN.</p>
+                                <a href="https://drive.google.com/file/d/1ckBiGdSZT6_11YpdfMO6Iy0EW-uNpQVr/view?usp=sharing" target="_blank">View Live</a>
+                                <a href="#" class="view-code">View Code</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>AI based ISR using CNN</h3>
                         <p>Research Paper</p>
-                        <div class="project-links">
-                            <a href="https://drive.google.com/file/d/1ckBiGdSZT6_11YpdfMO6Iy0EW-uNpQVr/view?usp=sharing"
-                                target="_blank" class="btn btn-small">View Project</a>
-                            <a href="#" target="_blank" class="btn btn-small btn-secondary">View Code</a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal hidden" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+      <span class="lightbox-close" role="button" aria-label="Close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" alt="">
+      <div id="lightbox-caption"></div>
+      <a class="lightbox-prev" role="button" aria-label="Previous image">&#10094;</a>
+      <a class="lightbox-next" role="button" aria-label="Next image">&#10095;</a>
+    </div>
     <!-- Contact Section -->
     <section id="contact" class="contact section-padding">
         <div class="container">
@@ -252,7 +275,9 @@
             </div>
         </div>
     </section>
-
+    </main>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
     <!-- Footer -->
     <footer>
         <div class="container">
