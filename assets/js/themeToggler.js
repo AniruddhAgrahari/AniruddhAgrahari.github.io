@@ -1,17 +1,40 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('🎨 Theme toggler loading...');
+    
     // Get theme toggle buttons
     const themeToggle = document.getElementById('theme-toggle');
     const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
     const navbar = document.getElementById('navbar');
-
+    
     // Function to set the theme
     function setTheme(theme) {
+        console.log(`🎨 Setting theme to: ${theme}`);
+        
+        // Set the theme attribute
         document.documentElement.setAttribute('data-theme', theme);
+        document.body.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        navbar.setAttribute('data-theme', theme);
-
+        
+        if (navbar) {
+            navbar.setAttribute('data-theme', theme);
+            
+            // Force navbar styling refresh
+            if (theme === 'dark') {
+                navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        }
+        
         // Update button icons for both toggles
         updateToggleIcons(theme);
+        
+        // Force a repaint
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
+        
+        console.log(`✅ Theme set to ${theme}`);
     }
 
     function updateToggleIcons(theme) {
@@ -27,34 +50,34 @@ document.addEventListener('DOMContentLoaded', function () {
             sunIcons.forEach(icon => icon.style.display = 'none');
         }
     }
-
+    
     // Check for saved theme preference or system preference
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Initialize theme
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else if (prefersDark) {
-        setTheme('dark');
-    } else {
+    
+    // Initialize theme - always default to dark unless explicitly set to light
+    if (savedTheme === 'light') {
         setTheme('light');
+    } else {
+        setTheme('dark');
     }
 
     // Toggle theme function
     function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        console.log(`🔄 Toggling theme from ${currentTheme} to ${newTheme}`);
         setTheme(newTheme);
     }
 
     // Add event listeners to theme toggle buttons
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
+        console.log('✅ Desktop theme toggle connected');
     }
 
     if (mobileThemeToggle) {
         mobileThemeToggle.addEventListener('click', toggleTheme);
+        console.log('✅ Mobile theme toggle connected');
     }
 
     // Listen for system preference changes
@@ -91,8 +114,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Track scrolling to ensure navbar theme persists
     window.addEventListener('scroll', function () {
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (navbar.getAttribute('data-theme') !== currentTheme) {
+        if (navbar && navbar.getAttribute('data-theme') !== currentTheme) {
             navbar.setAttribute('data-theme', currentTheme);
         }
     });
+    
+    console.log('🎨 Theme toggler initialized successfully');
 });

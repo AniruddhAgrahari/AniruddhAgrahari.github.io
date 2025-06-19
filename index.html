@@ -6,18 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <!-- GitHub Pages Path Fix - Load this first -->
-    <script src="assets/js/githubPagesPathFix.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="assets/js/githubPagesPathFix.js"></script>    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 
-<body>
+<body class="light-theme">
+  <!-- ===== LOADER ===== -->
+  <div id="loading-screen">
+    <div class="glitch-text" data-text="LOADING...">LOADING...</div>
+  </div>
+
+  <!-- ===== YOUR WEBSITE CONTENT ===== -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <div id="progress-bar"></div>
     <!-- Navigation -->
     <nav id="navbar" data-theme-component="navbar">
         <div class="container">
-            <h1 class="logo">My Portfolio</h1>
+            <h1 class="logo">AniruddhAgrahari</h1>
             <ul class="nav-menu" id="main-nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -44,18 +50,22 @@
         </div>
     </nav>
     <main id="main-content">
-    <!-- Hero Section -->
-    <section id="home" class="hero" style="background-image: url('assets/images/projects/4.jpg');">
+    <!-- Hero Section -->    <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Hello, I'm <span class="highlight">Aniruddh Agrahari</span></h1>
-                <p class="lead">3rd year Undergrad</p>
-                <p class="roles"><span id="typed-roles"></span><span class="cursor">|</span></p>
-                <div class="cta-buttons">
+                <h1 class="hero-title">
+                    <span class="text-wrapper">
+                        <span class="letters">Hello, I'm </span>
+                        <span class="letters highlight">Aniruddh Agrahari</span>
+                    </span>
+                </h1>
+                <p class="lead hero-subtitle">3rd year Undergrad</p>
+                <p class="roles hero-roles"><span id="typed-roles"></span><span class="cursor">|</span></p>
+                <div class="cta-buttons hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
-                <div class="social-icons">
+                <div class="social-icons hero-social">
                     <a href="https://github.com/AniruddhAgrahari" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/aniruddh-agrahari-240160269/" target="_blank"><i
                             class="fab fa-linkedin"></i></a>
@@ -291,16 +301,34 @@
                 </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
-    <script src="assets/js/imageHandler.js"></script>
-    <script src="assets/js/backgroundLoader.js"></script>
-    <script src="assets/js/3dEffects.js"></script>
-    <script src="assets/js/particleBackground.js"></script>
-    <script src="assets/js/scrollEnhancer.js"></script>
-    <script src="assets/js/themeToggler.js"></script>
+    </footer>    <!-- Scripts -->
+    <script src="script.js?v=2"></script>
+    <script src="assets/js/imageHandler.js?v=2"></script>
+    <script src="assets/js/backgroundLoader.js?v=2"></script>
+    <script src="assets/js/3dEffects.js?v=2"></script>
+    <script src="assets/js/animeAnimations.js"></script>
+    <!-- <script src="assets/js/interactiveActivationField.js"></script> -->
+    <!-- <script src="assets/js/simpleActivationTest.js"></script> -->
+    <!-- <script src="assets/js/blockAnimation.js"></script> -->
+    <!-- <script src="assets/js/particleBackground.js"></script> -->    <script src="assets/js/scrollEnhancer.js?v=2"></script>
+    <script src="assets/js/themeToggler.js?v=2"></script>
+      <!-- Loading Screen Script -->
+    <script>
+      window.addEventListener('load', function() {
+        const loader = document.getElementById('loading-screen');
+        
+        // Add a minimum display time of 2 seconds to see the loading screen
+        setTimeout(function() {
+          // Add the 'hidden' class to trigger the fade-out animation
+          loader.classList.add('hidden');
+          
+          // Optional: Remove the loader from the DOM after the animation completes
+          loader.addEventListener('transitionend', function() {
+            loader.remove();
+          });
+        }, 2000); // Show loading screen for at least 2 seconds
+      });
+    </script>
 </body>
 
 </html>

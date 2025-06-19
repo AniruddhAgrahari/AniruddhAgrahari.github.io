@@ -12,10 +12,29 @@
 
 /* Theme Variables */
 :root {
-  --primary-color: #f9ca24; /* Golden yellow */
+  /* Default to dark theme colors */
+  --primary-color: #00d1b2; /* Vibrant Teal/Cyan */
+  --secondary-color: #b0bec5; /* Lighter gray for contrast */
+  --accent-color: #00f0ff; /* Brighter Cyan for accents */
+  --light-accent-bg: rgba(0, 209, 178, 0.1);
+  --background-color: #000000; /* Pitch Black */
+  --text-color: #f5f5f5;
+  --light-color: #111; /* Slightly lighter dark for elements on primary bg */
+  --dark-color: #f5f5f5;
+  --card-bg: #1a1a1a; /* Slightly lighter than pitch black */
+  --navbar-bg: rgba(0, 0, 0, 0.95); /* Changed to pure black with opacity */
+  --contact-bg: #1a1a1a; /* Slightly lighter */
+  --border-color: #333; /* Adjusted border for contrast */
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+  --transition: all 0.3s ease;
+}
+
+/* Light Theme Variables (Optional) */
+[data-theme="light"] {
+  --primary-color: #009688;
   --secondary-color: #2c3e50;
-  --yellow-accent: #ffdd59; /* Brighter yellow for accents */
-  --yellow-light: #fff5d7; /* Light yellow for backgrounds */
+  --accent-color: #00bfa5;
+  --light-accent-bg: rgba(0, 150, 136, 0.1);
   --background-color: #f9f9f9;
   --text-color: #333;
   --light-color: #fff;
@@ -25,21 +44,6 @@
   --contact-bg: #fff;
   --border-color: #ddd;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
-
-/* Dark Theme Variables */
-[data-theme="dark"] {
-  --primary-color: #ffdd59; /* Brighter yellow for dark mode */
-  --background-color: #1a1a1a;
-  --text-color: #f5f5f5;
-  --light-color: #222;
-  --dark-color: #f5f5f5;
-  --card-bg: #2a2a2a;
-  --navbar-bg: rgba(26, 26, 26, 0.95);
-  --contact-bg: #2a2a2a;
-  --border-color: #444;
-  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 html {
@@ -47,11 +51,86 @@ html {
   overflow-x: hidden;
 }
 
+/* ===== LOADER STYLES ===== */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color); /* Use theme background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* High z-index to be on top */
+  transition: opacity 1s ease-out; /* For the fade-out */
+}
+
+/* ===== GLITCH EFFECT ===== */
+.glitch-text {
+  position: relative;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 4rem;
+  color: var(--primary-color); /* Use theme primary color */
+  text-transform: uppercase;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background-color); /* Use theme background */
+  overflow: hidden;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 red;
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: 2px 0 blue;
+  animation: glitch 3s infinite linear alternate-reverse;
+}
+
+/* Keyframes for the glitch animation */
+@keyframes glitch {
+  0% { clip-path: inset(10% 0 80% 0); }
+  10% { clip-path: inset(50% 0 30% 0); }
+  20% { clip-path: inset(90% 0 5% 0); }
+  30% { clip-path: inset(25% 0 70% 0); }
+  40% { clip-path: inset(60% 0 20% 0); }
+  50% { clip-path: inset(5% 0 90% 0); }
+  60% { clip-path: inset(40% 0 45% 0); }
+  70% { clip-path: inset(85% 0 10% 0); }
+  80% { clip-path: inset(20% 0 65% 0); }
+  90% { clip-path: inset(75% 0 15% 0); }
+  100% { clip-path: inset(45% 0 40% 0); }
+}
+
+/* ===== FADE OUT & HIDE ===== */
+.hidden {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden; /* Hide element after animation */
+  }
+}
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--background-color); /* Ensures body bg uses the variable */
   overflow-x: hidden;
   /* Ensure GPU acceleration for smoother scrolling */
   -webkit-backface-visibility: hidden;
@@ -109,7 +188,8 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #e6b00e; /* Darker yellow on hover */
+  background-color: var(--accent-color); /* Use accent color for hover */
+  color: var(--light-color); /* Ensure text remains readable */
   transform: translateY(-5px) translateZ(10px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -122,7 +202,7 @@ body {
 
 .btn-secondary:hover {
   background-color: var(--primary-color);
-  color: var(--light-color);
+  color: var(--light-color); /* Use light color for text on primary bg */
   transform: translateY(-5px) translateZ(10px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -147,6 +227,15 @@ img {
   box-shadow: var(--box-shadow);
   z-index: 1000; /* Ensure high z-index */
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Force navbar styling for dark theme */
+[data-theme="dark"] #navbar {
+  background-color: rgba(0, 0, 0, 0.95) !important; /* Force black navbar in dark mode */
+}
+
+[data-theme="light"] #navbar {
+  background-color: rgba(255, 255, 255, 0.95) !important; /* Force white navbar in light mode */
 }
 
 #navbar .container {
@@ -255,7 +344,7 @@ img {
 
 #theme-toggle:hover,
 #mobile-theme-toggle:hover {
-  background-color: rgba(249, 202, 36, 0.2);
+  background-color: var(--light-accent-bg); /* Use light accent bg for hover */
 }
 
 #theme-toggle .fa-sun,
@@ -282,25 +371,6 @@ img {
   display: none; /* Hidden by default, shown in media query */
 }
 
-/* Dark Mode Navbar Specifics */
-[data-theme="dark"] #navbar {
-  background-color: var(--navbar-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .nav-link {
-  color: var(--text-color);
-}
-
-[data-theme="dark"] .bar {
-  background-color: var(--text-color);
-}
-
-[data-theme="dark"] #theme-toggle,
-[data-theme="dark"] #mobile-theme-toggle {
-  color: var(--text-color);
-}
-
 /* Hero Section */
 .hero {
   height: 100vh;
@@ -309,26 +379,9 @@ img {
   position: relative;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   padding-top: 70px; /* Account for navbar height */
-  color: var(--light-color); /* Default text color for hero */
-}
-
-/* Subtle overlay for text contrast */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.35); /* Adjust opacity as needed */
-  z-index: 2; /* Below content, above background */
-}
-
-.hero .container {
-  position: relative;
-  z-index: 3; /* Ensure content is above overlay */
+  color: var(--text-color); /* Adjusted text color for dark bg */
+  background-color: var(--background-color); /* Explicitly set background color */
 }
 
 .hero-content {
@@ -339,6 +392,7 @@ img {
   font-size: 3.5rem;
   margin-bottom: 20px;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Improved shadow */
+  color: var(--text-color); /* Ensure heading uses text color */
 }
 
 .hero-content .highlight {
@@ -351,6 +405,7 @@ img {
   font-size: 1.5rem;
   margin-bottom: 30px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Improved shadow */
+  color: var(--text-color); /* Ensure lead text uses text color */
 }
 
 .social-icons {
@@ -375,17 +430,18 @@ img {
 
 .social-icons a:hover {
   /* Corrected selector */
-  background-color: var(--dark-color);
+  background-color: var(--text-color); /* Use text color (light) for hover bg */
   color: var(--primary-color);
   transform: rotateY(360deg) translateY(-5px);
 }
 
 /* About Section */
 .about {
+  /* Update gradient to use new primary color */
   background-image: linear-gradient(
     to bottom right,
     transparent 50%,
-    rgba(249, 202, 36, 0.1) 50%
+    var(--light-accent-bg) 50% /* Use light accent bg */
   );
 }
 
@@ -401,10 +457,9 @@ img {
 
 .about-img img {
   border-radius: 10px;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 10px 20px var(--light-accent-bg); /* Use light accent bg for shadow */
   transition: transform 0.3s ease;
   transform-style: preserve-3d;
-  box-shadow: 0 10px 20px rgba(249, 202, 36, 0.3);
 }
 
 .about-text {
@@ -422,7 +477,7 @@ img {
 
 /* Skills Section */
 .skills {
-  background-color: var(--yellow-light);
+  background-color: var(--background-color); /* Use theme variable instead of hardcoded color */
 }
 
 .skills-container {
@@ -432,7 +487,7 @@ img {
 }
 
 .skill-box {
-  background-color: var(--background-color);
+  background-color: var(--card-bg); /* Use card background variable for better contrast */
   padding: 30px;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
@@ -471,10 +526,11 @@ img {
 
 /* Projects Section */
 .projects {
+   /* Update gradient to use new primary color */
   background-image: linear-gradient(
     to bottom left,
     transparent 50%,
-    rgba(249, 202, 36, 0.1) 50%
+    var(--light-accent-bg) 50% /* Use light accent bg */
   );
 }
 
@@ -551,7 +607,7 @@ img {
 
 .contact-info {
   background-color: var(--primary-color);
-  color: var(--dark-color);
+  color: var(--light-color); /* Use light color for text on primary bg */
   padding: 30px;
   border-radius: 10px;
 }
@@ -559,7 +615,7 @@ img {
 .contact-info h3 {
   margin-bottom: 30px;
   font-size: 1.5rem;
-  color: var(--dark-color);
+  color: var(--light-color); /* Use light color for text on primary bg */
   font-weight: bold;
 }
 
@@ -604,8 +660,8 @@ img {
 }
 
 .contact-form button.btn-primary:hover {
-  background-color: var(--dark-color);
-  color: var(--primary-color);
+  background-color: var(--accent-color); /* Use accent color for hover */
+  color: var(--light-color); /* Ensure text remains readable */
 }
 
 /* Alert styles for form feedback */
@@ -665,8 +721,8 @@ img {
 
 /* Footer */
 footer {
-  background-color: var(--dark-color);
-  color: var(--light-color);
+  background-color: #0a0a0a; /* Very dark, but not pitch black */
+  color: #ccc;
   padding: 30px 0;
 }
 
@@ -705,7 +761,6 @@ footer .social-icons a:hover {
 .about-img img {
   transition: transform 0.3s ease;
   transform-style: preserve-3d;
-  box-shadow: 0 10px 20px rgba(249, 202, 36, 0.3);
 }
 .cube-container {
   width: 200px;
@@ -730,8 +785,8 @@ footer .social-icons a:hover {
   justify-content: center;
   align-items: center;
   background-color: var(--primary-color);
-  color: var(--dark-color);
-  border: 2px solid var(--dark-color);
+  color: var(--light-color); /* Use light color for text on primary bg */
+  border: 2px solid var(--light-color); /* Use light color for border */
   opacity: 0.9;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -756,7 +811,7 @@ footer .social-icons a:hover {
 .skill-icon-3d {
   font-size: 3rem;
   margin-bottom: 10px;
-  color: var(--dark-color);
+  color: var(--light-color); /* Use light color for icon on primary bg */
 }
 @keyframes float {
   0%,
@@ -783,9 +838,9 @@ footer .social-icons a:hover {
   vertical-align: middle;
   margin-left: 5px;
 }
-.yellow-tag {
+.yellow-tag { /* Rename or repurpose if needed, updating color */
   background-color: var(--primary-color);
-  color: var(--dark-color);
+  color: var(--light-color); /* Use light color for text on primary bg */
   font-size: 0.4em;
   padding: 3px 8px;
   border-radius: 20px;
@@ -794,17 +849,6 @@ footer .social-icons a:hover {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
-}
-
-/* Particles Background */
-#particles-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* Scroll Reveal Animations */
@@ -834,50 +878,8 @@ footer .social-icons a:hover {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #e6b00e;
+  background: var(--accent-color); /* Use accent color for hover */
 }
-
-/* Dark Mode Overrides */
-[data-theme="dark"] body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-[data-theme="dark"] .skills {
-  background-color: #252525;
-}
-[data-theme="dark"] .skill-box,
-[data-theme="dark"] .project-card {
-  background-color: var(--card-bg);
-}
-[data-theme="dark"] .project-card .project-info {
-  color: var(--text-color);
-}
-[data-theme="dark"] .project-info p {
-  color: #aaa;
-}
-[data-theme="dark"] .contact {
-  background-color: var(--contact-bg);
-}
-[data-theme="dark"] .contact-form {
-  background-color: var(--card-bg);
-  padding: 20px;
-  border-radius: 10px;
-}
-[data-theme="dark"] label {
-  color: var(--text-color);
-}
-[data-theme="dark"] input,
-[data-theme="dark"] textarea,
-[data-theme="dark"] select,
-[data-theme="dark"] button:not(.btn-primary) {
-  /* Exclude primary button if it has specific dark mode styles */
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  border-color: var(--border-color);
-}
-[data-theme="dark"] .nav-menu {
-  background-color: var(--card-bg);
-} /* Mobile nav menu background */
 
 /* Media Queries */
 
@@ -934,7 +936,7 @@ footer .social-icons a:hover {
     left: -100%;
     top: 70px; /* Adjust based on navbar height */
     flex-direction: column;
-    background-color: var(--card-bg); /* Use theme variable */
+    background-color: var(--card-bg); /* Ensure mobile menu uses card bg */
     width: 100%;
     text-align: center;
     transition: 0.3s ease-in-out;
@@ -960,7 +962,7 @@ footer .social-icons a:hover {
   .nav-link:hover,
   .nav-link.active {
     color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--light-accent-bg); /* Use light accent bg for hover */
   } /* Subtle hover/active */
 
   /* Hamburger Animation */
@@ -978,9 +980,6 @@ footer .social-icons a:hover {
   .hero {
     padding-top: 60px;
   } /* Adjust for potentially smaller navbar */
-  .hero::before {
-    background-color: rgba(0, 0, 0, 0.4);
-  } /* Slightly darker overlay for smaller screens */
   .hero-content {
     padding: 0 10px;
   }
@@ -1137,7 +1136,7 @@ footer .social-icons a:hover {
   left: 50%;
   transform: translateX(-50%);
   font-size: 2rem;
-  color: var(--light-color);
+  color: var(--text-color); /* Changed from --light-color to --text-color */
   animation: bounce 2s infinite;
   z-index: 3;
   cursor: pointer;
@@ -1337,4 +1336,46 @@ footer .social-icons a:hover {
 }
 .toast.error {
   background: #e74c3c;
+}
+
+/* Anime.js Animation Styles */
+.hero-title {
+  opacity: 1; /* Visible by default now */
+}
+
+.hero-subtitle,
+.hero-roles,
+.hero-buttons,
+.hero-social {
+  opacity: 0; /* Initially hidden for animation */
+}
+
+/* Enhanced animation support */
+.hero-content * {
+  will-change: transform, opacity;
+}
+
+/* Navigation link animation support */
+.nav-link {
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+
+/* Button animation support */
+.btn {
+  transform: scale(1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Social icon animation support */
+.social-icons a {
+  transform: scale(1) rotateZ(0);
+  transition: transform 0.3s ease;
+}
+
+/* Scroll animation elements */
+.section-title,
+.project-card,
+.skill-box {
+  opacity: 1; /* Default visible, will be set to 0 by JS */
 }
